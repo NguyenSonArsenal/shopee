@@ -1,4 +1,6 @@
 import React from 'react'
+import RegisterHeader from '../../components/RegisterHeader'
+import Footer from '../../components/Footer'
 
 interface Props {
   children?: React.ReactNode
@@ -7,8 +9,9 @@ interface Props {
 export default function RegisterLayout({children}: Props) {
   return (
     <div>
-      Register Layout
+      <RegisterHeader />
       {children}
+      <Footer />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { getRules } from '../../common/rules'
+import MyInput from '../../components/MyInput'
 
 interface FormRegister {
   email: string,
@@ -27,22 +28,39 @@ export default function Register() {
           </div>
           <form className={'p-5 bg-white rounded lg:col-start-4 col-span-2 shadow-sm'} noValidate onSubmit={handleSubmitRegister}>
             <div className={`text-2xl text-[#222]`}>Đăng ký</div>
-            <div className={'mt-8'}>
-              <input type='email' placeholder="Enter your email" {...register("email", rules.email)}
-                     className={'p-3 w-full rounded border border-gray-300 focus:border-gray-500 focus:outline-none focus:shadow-sm'}/>
-              <div className={'text-red-600 mt-[2px] text-sm min-h-[1rem]'}>{errors.email?.message}</div>
-            </div>
-            <div className={'mt-3'}>
-              <input type='password' placeholder="Enter your password" {...register("password", rules.password)}
-                     className={'p-3 w-full rounded border border-gray-300 focus:border-gray-500 focus:outline-none focus:shadow-sm'}/>
-              <div className={'text-red-600 mt-[2px] text-sm min-h-[1rem]'}>{errors.password?.message}</div>
-            </div>
-            <div className={'mt-3'}>
-              <input type='password' placeholder="Enter your password confirmation"
-                     {...register("password_confirmation", rules.password_confirmation)}
-                     className={'p-3 w-full rounded border border-gray-300 focus:border-gray-500 focus:outline-none focus:shadow-sm'}/>
-              <div className={'text-red-600 mt-[2px] text-sm min-h-[1rem]'}>{errors.password_confirmation?.message}</div>
-            </div>
+
+            <MyInput
+              type={'email'}
+              name={'email'}
+              register={register}
+              placeholder="Enter your email"
+              className="mt-8"
+              rules={rules.email}
+              errors={errors.email?.message}
+            />
+
+            <MyInput
+              type={'password'}
+              name={'password'}
+              register={register}
+              placeholder="Enter your password"
+              className="mt-3"
+              rules={rules.password}
+              errors={errors.password?.message}
+              autoComplete='on'
+            />
+
+            <MyInput
+              type={'password'}
+              name={'password_confirmation'}
+              register={register}
+              placeholder="Enter your password confirmation"
+              className="mt-3"
+              rules={rules.password_confirmation}
+              errors={errors.password_confirmation?.message}
+              autoComplete='on'
+            />
+
             <div className={'mt-3'}>
               <button className={'w-full bg-orange uppercase text-white hover:opacity-70 py-3'} type={'submit'}>Đăng ký</button>
             </div>

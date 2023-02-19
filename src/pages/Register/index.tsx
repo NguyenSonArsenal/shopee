@@ -19,8 +19,8 @@ export default function Register() {
 
   return (
     <div className={`bg-orange`}>
-      <div className={`max-w-7xl mx-auto px-4 py-10`}>
-        <div className={`grid grid-cols-2 lg:grid-cols-5 gap-1`}>
+      <div className={`container`}>
+        <div className={`grid grid-cols-2 lg:grid-cols-5 gap-1 py-10`}>
           <div className={'lg:col-start-1 lg:col-end-4'}>
             <img className={'text-center m-auto'} src='../../src/assets/image/logo-register.png' alt=''/>
             <div className={'text-white text-xl text-center'}>Nền tảng thương mại điện tử <br/> được yêu thích ở Đông Nam Á & Đài Loan</div>

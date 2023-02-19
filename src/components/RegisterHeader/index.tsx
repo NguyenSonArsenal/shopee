@@ -4,7 +4,7 @@ import { LogoShopee } from '../../common/icons'
 const RegisterHeader = () => {
   return (
     <header className='py-5'>
-      <div className={'px-3.5 max-w-7xl mx-auto px-4'}>
+      <div className={'container'}>
         <nav className={`flex items-end`}>
           <Link to='/'>
               <LogoShopee  className={'h-8 lg:h-11 fill-orange'}/>

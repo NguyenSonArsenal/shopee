@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom'
+import MyInput from '../../components/MyInput'
+import { useForm } from 'react-hook-form'
+import { getRules } from '../../common/rules'
+
+interface FormLogin {
+  email: string,
+  password: string
+}
 
 export default function Login() {
+  const { register, handleSubmit, watch, getValues, formState: { errors } } = useForm<FormLogin>()
+  const rules = getRules(getValues);
+
   return (
     <div className={`bg-orange`}>
       <div className={`container`}>
@@ -11,19 +22,31 @@ export default function Login() {
           </div>
           <form className={'p-5 bg-white rounded lg:col-start-4 col-span-2 shadow-sm'}>
             <div className={`text-2xl text-[#222]`}>Đăng nhập</div>
-            <div className={'mt-8'}>
-              <input type='email' name="email" placeholder="Enter your email"
-                     className={'p-3 w-full rounded border border-gray-300 focus:border-gray-500 focus:outline-none focus:shadow-sm'}/>
-              <div className={'text-red-600 mt-[2px] text-sm min-h-[1rem]'}></div>
-            </div>
-            <div className={'mt-3'}>
-              <input type='password' name="password" placeholder="Enter your password"
-                     className={'p-3 w-full rounded border border-gray-300 focus:border-gray-500 focus:outline-none focus:shadow-sm'}/>
-              <div className={'text-red-600 mt-[2px] text-sm min-h-[1rem]'}></div>
-            </div>
+
+            <MyInput
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              register={register}
+              className={'mt-8'}
+              rules={rules.email}
+              errors={errors.email?.message}
+            />
+
+            <MyInput
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              register={register}
+              className={'mt-3'}
+              rules={rules.password}
+              errors={errors.password?.message}
+            />
+
             <div className={'mt-3'}>
               <button className={'w-full bg-orange uppercase text-white hover:opacity-70 py-3'} type={'button'}>Đăng nhập</button>
             </div>
+
             <div className={`mt-8 flex items-center justify-center`}>
               <div className={'text-[#00000042]'}>Bạn mới biết đến Shopee?</div>
               <Link to='/register' className={'ml-1 text-orange'}>Đăng ký</Link>

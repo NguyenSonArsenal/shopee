@@ -1,22 +1,21 @@
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import { getRules } from '../../common/rules'
+import { yupResolver } from '@hookform/resolvers/yup';
+import { getRules, Schema, schema } from '../../common/rules'
 import MyInput from '../../components/MyInput'
 
-interface FormRegister {
-  email: string,
-  password: string,
-  password_confirmation: string
-}
+type FormRegister = Schema;
 
 export default function Register() {
   // errors: Xuất hiện khi component re-render => xử lý submit form lỗi validate
-  const { register, handleSubmit, watch, getValues, formState: { errors } } = useForm<FormRegister>()
+  const { register, handleSubmit, watch, getValues, formState: { errors } } = useForm<FormRegister>({
+    resolver: yupResolver(schema)
+  })
   const rules = getRules(getValues);
 
   const handleSubmitRegister = handleSubmit((data) => {
+    console.log(data, '//data')
   });
-
 
   return (
     <div className={`bg-orange`}>
